@@ -75,12 +75,20 @@ int main()
   srand(time(NULL)); // Inicializa el generador de números aleatorios
 
   int NUM_HORSES;
+  int user_horse;
 
   printf("\nHIPODROMO\n");
   printf("====================================================\n");
   printf("Bienvenio a la carrera de caballos\n");
   printf("¿Cuántos caballos quieres que corran?\n");
   scanf("%d", &NUM_HORSES);
+  printf("¿Cuál es tu caballo ganador? (1-%d)\n", NUM_HORSES);
+  scanf("%d", &user_horse);
+  if (user_horse < 1 || user_horse > NUM_HORSES)
+  {
+    printf("Número de caballo inválido\n");
+    return 1;
+  }
   printf("====================================================\n\n");
 
   thread_args threads[NUM_HORSES];
@@ -124,6 +132,14 @@ int main()
   if (winner != -1)
   {
     printf("¡El caballo %d es el ganador!\n", winner);
+    if (winner == user_horse)
+    {
+      printf("¡HAS GANADO!\n");
+    }
+    else
+    {
+      printf("¡HAS PERDIDO!\n");
+    }
   }
 
   return 0;
